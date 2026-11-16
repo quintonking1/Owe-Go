@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import { Alert } from '../../components/Alert/Alert.jsx'
 import { AvatarStack } from '../../components/Avatar/Avatar.jsx'
 import { Button } from '../../components/Button/Button.jsx'
 import { ExpenseRow } from '../../components/ExpenseRow/ExpenseRow.jsx'
@@ -8,10 +7,12 @@ import { Icon } from '../../components/Icon/Icon.jsx'
 import { Screen } from '../../components/Screen/Screen.jsx'
 import { TabBar } from '../../components/TabBar/TabBar.jsx'
 import { useDemoSeed } from '../../data/demo.js'
-import { useAppData } from '../../data/store.js'
+import { DEMO_TRIP_ID } from '../../data/seed.js'
+import { useCurrentTrip } from '../../data/useCurrentTrip.js'
 import { formatDateRange, formatShortDate } from '../../lib/dates.js'
 import { formatMoney } from '../../lib/money.js'
 import { computeBalances, homeAmount } from '../../logic/balances.js'
+import { EmptyTrip } from '../shared/EmptyTrip.jsx'
 import './TripHome.css'
 
 /** How many expenses "Recent charges" shows. "See all" opens the full list. */
@@ -22,24 +23,14 @@ const RECENT_COUNT = 10
  * Every number on this screen is worked out from the saved expenses.
  */
 export function TripHome() {
-  const { currentUserId, currentTripId, people, trips, expenses } = useAppData()
+  const { trip, travelers, tripExpenses, tripPayments, currentUserId, nameOf } = useCurrentTrip()
   const demo = useDemoSeed()
 
-  const trip = trips.find((candidate) => candidate.id === currentTripId)
   if (!trip) return <NoTrip />
 
-  // The current user shows as "You", but keeps their own initial on the avatar.
-  const nameOf = (id) => {
-    if (id === currentUserId) return 'You'
-    return people.find((person) => person.id === id)?.name ?? 'Someone'
-  }
-  const travelers = trip.travelerIds
-    .map((id) => people.find((person) => person.id === id))
-    .filter(Boolean)
-    .map((person) => ({ ...person, initial: person.name, name: nameOf(person.id) }))
-
-  const tripExpenses = expenses.filter((expense) => expense.tripId === trip.id)
-  const myBalance = computeBalances(tripExpenses, trip.travelerIds, trip.homeCurrency).get(currentUserId)
+  const myBalance = computeBalances(tripExpenses, trip.travelerIds, trip.homeCurrency, tripPayments).get(
+    currentUserId,
+  )
 
   // Newest first. Expenses paid on the same day keep the order they were added in.
   const recent = [...tripExpenses]
@@ -86,7 +77,10 @@ export function TripHome() {
           </section>
         </main>
       ) : (
-        <EmptyTrip status={demo.status} onRetry={demo.retry} />
+        // Only the demo trip waits on demo expenses. A trip you just made is simply empty.
+        <main>
+          <EmptyTrip status={trip.id === DEMO_TRIP_ID ? demo.status : 'ready'} onRetry={demo.retry} />
+        </main>
       )}
 
       {hasExpenses && <FloatingButton to="/expenses/new">Add expense</FloatingButton>}
@@ -168,58 +162,14 @@ function BalanceCard({ net, currency }) {
   )
 }
 
-/** Shown while the trip has no expenses: loading, rates down, or truly empty. */
-function EmptyTrip({ status, onRetry }) {
-  if (status === 'loading') {
-    return (
-      <main className="trip-home__empty">
-        <p className="trip-home__empty-text" role="status">
-          Loading expenses…
-        </p>
-      </main>
-    )
-  }
-
-  if (status === 'error') {
-    return (
-      <main className="trip-home__main">
-        <Alert
-          title="Rates unavailable"
-          action={
-            <Button variant="link" size="md" onClick={onRetry}>
-              Retry
-            </Button>
-          }
-        >
-          Could not reach the exchange rate service, so the demo expenses were not added.
-        </Alert>
-      </main>
-    )
-  }
-
-  return (
-    <main className="trip-home__empty">
-      <h2 className="trip-home__empty-title">No expenses yet</h2>
-      <p className="trip-home__empty-text">
-        Log the first thing someone paid for. Balances fill in as you go.
-      </p>
-      <div className="trip-home__empty-action">
-        <Button variant="primary" to="/expenses/new">
-          Add first expense
-        </Button>
-      </div>
-    </main>
-  )
-}
-
 /** Shown if there is no current trip at all. */
 function NoTrip() {
   return (
     <Screen>
-      <main className="trip-home__empty">
-        <h1 className="trip-home__empty-title">No trip yet</h1>
-        <p className="trip-home__empty-text">Start a trip to begin logging expenses.</p>
-        <div className="trip-home__empty-action">
+      <main className="empty-trip">
+        <h1 className="empty-trip__title">No trip yet</h1>
+        <p className="empty-trip__text">Start a trip to begin logging expenses.</p>
+        <div className="empty-trip__action">
           <Button variant="primary" to="/trips">
             Go to trips
           </Button>

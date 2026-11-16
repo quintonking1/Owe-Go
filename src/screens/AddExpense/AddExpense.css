@@ -1,0 +1,89 @@
+.add-expense__main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-height: 0;
+  overflow-y: auto;
+  padding: var(--space-1) var(--space-page-x) var(--space-3);
+}
+
+/* The two amounts, side by side at equal weight */
+.add-expense__amounts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2-5);
+  padding-top: var(--space-1-5);
+}
+
+.add-expense__amount-row {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-2);
+  width: 100%;
+}
+
+.add-expense__amount {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2-5);
+  min-width: 0;
+}
+
+.add-expense__arrow {
+  display: flex;
+  padding-bottom: var(--space-3);
+  color: var(--color-muted-foreground);
+}
+
+.add-expense__rate {
+  font-size: var(--type-code-sm-size);
+  color: var(--color-muted-foreground);
+}
+
+/* Footer: what each person pays, and Save */
+.add-expense__footer {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3-5) var(--space-page-x) var(--space-footer-bottom);
+  border-top: 1px solid var(--color-border);
+  background: var(--color-background);
+}
+
+.add-expense__each {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.add-expense__each-label {
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 600;
+  color: var(--color-muted-foreground);
+}
+
+/* 24px semibold. "Waiting on rate" uses this same size on purpose. */
+.add-expense__each-amount {
+  font-size: var(--type-amount-each-size);
+  line-height: var(--type-amount-each-line);
+  font-weight: var(--type-amount-each-weight);
+  letter-spacing: var(--type-amount-each-tracking);
+  color: var(--color-foreground);
+  white-space: nowrap;
+}
+
+.add-expense__sheet-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2px;
+  padding-top: var(--space-3-5);
+  border-top: 1px solid var(--color-border);
+}

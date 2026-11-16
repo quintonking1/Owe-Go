@@ -1,0 +1,57 @@
+.expenses {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+  padding: 64px var(--space-page-x) 0;
+}
+
+.expenses__title {
+  font-size: var(--type-display-size);
+  line-height: var(--type-display-line);
+  font-weight: var(--type-display-weight);
+  letter-spacing: var(--type-display-tracking);
+}
+
+.expenses__summary {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-top: var(--space-1-5);
+}
+
+.expenses__count {
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--color-muted-foreground);
+}
+
+.expenses__total {
+  color: var(--color-foreground);
+  font-size: var(--type-amount-md-size);
+  font-weight: var(--type-amount-md-weight);
+  white-space: nowrap;
+}
+
+/* Scrolls, and fades to nothing over the last 120px, above the Add expense button. */
+.expenses__list {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding-bottom: 88px;
+  -webkit-mask-image: linear-gradient(to bottom, black 0, black calc(100% - 120px), transparent 100%);
+  mask-image: linear-gradient(to bottom, black 0, black calc(100% - 120px), transparent 100%);
+}
+
+.expenses__list:focus-visible {
+  outline-offset: -2px;
+}
+
+/* Date heading above each day's expenses */
+.expenses__day {
+  padding: var(--space-4-5) 0 var(--space-1-5);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-muted-foreground);
+}

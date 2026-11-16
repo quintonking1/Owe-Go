@@ -1,0 +1,31 @@
+.empty-trip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2-5);
+  padding: 36px 32px;
+  text-align: center;
+}
+
+/* The alert reads better left-aligned, at the normal page padding. */
+.empty-trip--alert {
+  align-items: stretch;
+  padding: var(--space-3-5) var(--space-page-x);
+  text-align: left;
+}
+
+.empty-trip__title {
+  font-size: var(--type-empty-title-size);
+  line-height: var(--type-empty-title-line);
+  font-weight: var(--type-empty-title-weight);
+}
+
+.empty-trip__text {
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-line);
+  color: var(--color-muted-foreground);
+}
+
+.empty-trip__action {
+  margin-top: var(--space-3-5);
+}

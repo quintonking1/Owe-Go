@@ -10,8 +10,9 @@
   object-fit: cover;
 }
 
+/* No photo yet: the same solid color the Trips tab uses for photo-less trips. */
 .trip-home__photo--empty {
-  background: var(--color-muted);
+  background: var(--color-person-catherine);
 }
 
 .trip-home__switcher {
@@ -183,30 +184,4 @@
 
 .trip-home__list:focus-visible {
   outline-offset: -2px;
-}
-
-/* Empty trip */
-.trip-home__empty {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-2-5);
-  padding: 36px 32px;
-  text-align: center;
-}
-
-.trip-home__empty-title {
-  font-size: var(--type-empty-title-size);
-  line-height: var(--type-empty-title-line);
-  font-weight: var(--type-empty-title-weight);
-}
-
-.trip-home__empty-text {
-  font-size: var(--type-body-size);
-  line-height: var(--type-body-line);
-  color: var(--color-muted-foreground);
-}
-
-.trip-home__empty-action {
-  margin-top: var(--space-3-5);
 }

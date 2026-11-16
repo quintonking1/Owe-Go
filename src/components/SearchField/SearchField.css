@@ -1,0 +1,53 @@
+.search-field {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  border: 1px solid var(--color-input);
+  border-radius: var(--radius-full);
+  background: var(--color-background);
+}
+
+.search-field--plain {
+  height: var(--size-search-field-travelers);
+  padding: 0 var(--space-4-5);
+  color: var(--color-muted-foreground);
+}
+
+.search-field--elevated {
+  height: var(--size-search-field-destination);
+  padding: 0 var(--space-5);
+  box-shadow: var(--shadow-card);
+  color: var(--color-foreground);
+}
+
+.search-field--error {
+  border-color: var(--color-destructive);
+}
+
+/* The input has no outline of its own, so ring the whole pill instead. */
+.search-field:focus-within {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 2px;
+}
+
+.search-field__input {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+}
+
+.search-field--plain .search-field__input {
+  font-size: 15px;
+}
+
+.search-field--elevated .search-field__input {
+  font-size: var(--type-input-size);
+  line-height: var(--type-input-line);
+  font-weight: 600;
+}

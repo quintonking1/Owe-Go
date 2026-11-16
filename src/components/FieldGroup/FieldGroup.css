@@ -92,6 +92,8 @@
 /* Stretch the button's tap and focus area to the whole field. */
 .field--button {
   position: relative;
+  /* Never squeeze the value onto two lines: take room from the field beside it. */
+  min-width: max-content;
 }
 
 .field__button::after {
@@ -119,6 +121,7 @@
 }
 
 .field__value {
+  white-space: nowrap;
   font-size: var(--type-input-size);
   line-height: var(--type-input-line);
 }

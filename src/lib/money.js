@@ -34,3 +34,13 @@ export function convertToHome(amount, fromCurrency, rate, homeCurrency) {
   const wholeUnits = amount / 10 ** decimalPlaces(fromCurrency)
   return Math.round(wholeUnits * rate * 10 ** decimalPlaces(homeCurrency))
 }
+
+/**
+ * Turn what the user typed into a smallest-unit amount: ("12.50", 'USD') -> 1250.
+ * Returns 0 when the text isn't a number above zero.
+ */
+export function parseAmount(text, currency) {
+  const number = Number.parseFloat(String(text).replace(/[^0-9.]/g, ''))
+  if (!Number.isFinite(number) || number <= 0) return 0
+  return Math.round(number * 10 ** decimalPlaces(currency))
+}

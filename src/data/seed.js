@@ -5,7 +5,9 @@ import tokyoPhoto from '../assets/tokyo.webp'
  * on one trip, with three friends who already have accounts.
  *
  * Shapes:
- *   person  { id, name, color }   color is an Avatar color name
+ *   person  { id, name, color, phone, friend }
+ *           color is an Avatar color name. `friend: false` means they have an
+ *           account but only show up once invited by phone number.
  *   trip    { id, name, destination, startDate, endDate, homeCurrency, travelerIds, photo }
  *   expense { id, tripId, title, date, amount, currency, rate, rateDate,
  *             paidById, splitBetweenIds, createdAt }
@@ -18,10 +20,13 @@ export const initialData = {
   // Becomes true once the demo expenses have been added.
   demoSeeded: false,
   people: [
-    { id: 'quinton', name: 'Quinton', color: 'you' },
-    { id: 'arno', name: 'Arno', color: 'arno' },
-    { id: 'catherine', name: 'Catherine', color: 'catherine' },
-    { id: 'dinah', name: 'Dinah', color: 'dinah' },
+    { id: 'quinton', name: 'Quinton', color: 'you', phone: '5105550100', friend: true },
+    { id: 'arno', name: 'Arno', color: 'arno', phone: '5105550111', friend: true },
+    { id: 'catherine', name: 'Catherine', color: 'catherine', phone: '5105550122', friend: true },
+    { id: 'dinah', name: 'Dinah', color: 'dinah', phone: '5105550133', friend: true },
+    { id: 'maya', name: 'Maya', color: 'you', phone: '5105550144', friend: true },
+    // Has an account, but isn't a friend yet. Invite by phone to add them.
+    { id: 'leo', name: 'Leo', color: 'arno', phone: '5105550155', friend: false },
   ],
   trips: [
     {
@@ -34,11 +39,28 @@ export const initialData = {
       travelerIds: ['quinton', 'arno', 'catherine', 'dinah'],
       photo: tokyoPhoto,
     },
+    {
+      id: 'lisbon-2026',
+      name: 'Lisbon',
+      destination: 'Lisbon, Portugal',
+      startDate: '2026-06-12',
+      endDate: '2026-06-18',
+      homeCurrency: 'USD',
+      travelerIds: ['quinton', 'arno', 'dinah'],
+      photo: null,
+    },
   ],
   expenses: [],
+  // Settle-up payments marked paid:
+  //   { id, tripId, fromId, toId, amount, method, date, createdAt }
+  //   amount is in the trip's home-currency cents.
+  payments: [],
 }
 
-const tripId = 'tokyo-2026'
+/** The trip the demo expenses belong to. */
+export const DEMO_TRIP_ID = 'tokyo-2026'
+
+const tripId = DEMO_TRIP_ID
 const everyone = ['quinton', 'arno', 'catherine', 'dinah']
 
 /**

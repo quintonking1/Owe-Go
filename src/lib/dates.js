@@ -95,3 +95,17 @@ export function formatDateRange(startIso, endIso) {
   const endText = start.month === end.month ? String(end.day) : formatShortDate(endIso)
   return `${formatShortDate(startIso)} to ${endText}, ${end.year}`
 }
+
+/** "2026-06-12" -> "Jun 2026" */
+export function formatMonthShort(iso) {
+  const { year, month } = parseIso(iso)
+  return `${MONTHS[month].slice(0, 3)} ${year}`
+}
+
+/** How many nights between two dates. */
+export function nightsBetween(startIso, endIso) {
+  const start = parseIso(startIso)
+  const end = parseIso(endIso)
+  const ms = Date.UTC(end.year, end.month, end.day) - Date.UTC(start.year, start.month, start.day)
+  return Math.round(ms / 86400000)
+}

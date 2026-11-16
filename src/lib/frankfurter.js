@@ -6,6 +6,8 @@
 
 const API = 'https://api.frankfurter.dev/v1'
 const CACHE_KEY = 'oweandgo:rates:v1'
+/** If Frankfurter hasn't answered in this long, treat it as unavailable. */
+const TIMEOUT_MS = 8000
 
 /** Thrown when a rate can't be fetched. Screens show "Rates unavailable". */
 export class RatesUnavailableError extends Error {
@@ -47,7 +49,10 @@ export async function getRate(from, to, date) {
 
   let data
   try {
-    const response = await fetch(`${API}/${date}?base=${from}&symbols=${to}`)
+    const response = await fetch(`${API}/${date}?base=${from}&symbols=${to}`, {
+      // Stops waiting on a stalled request, which then lands in the catch below.
+      signal: AbortSignal.timeout(TIMEOUT_MS),
+    })
     if (!response.ok) throw new RatesUnavailableError()
     data = await response.json()
   } catch {

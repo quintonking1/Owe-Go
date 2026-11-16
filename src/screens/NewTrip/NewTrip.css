@@ -1,0 +1,121 @@
+/* Shared by both steps of the New trip flow. */
+.new-trip__main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-4-5);
+  min-height: 0;
+  overflow-y: auto;
+  padding: var(--space-2) var(--space-page-x);
+}
+
+.new-trip__main--travelers {
+  gap: var(--space-4);
+}
+
+.new-trip__title {
+  font-size: var(--type-title-size);
+  line-height: var(--type-title-line);
+  font-weight: var(--type-title-weight);
+  letter-spacing: var(--type-title-tracking);
+}
+
+.new-trip__destination {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1-5);
+}
+
+.new-trip__help {
+  font-size: var(--type-meta-size);
+  line-height: var(--type-meta-line);
+  color: var(--color-muted-foreground);
+}
+
+/* Footer: progress bar, then the buttons */
+.new-trip__footer {
+  flex-shrink: 0;
+  background: var(--color-background);
+}
+
+.new-trip__footer-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3-5) var(--space-page-x) var(--space-footer-bottom);
+}
+
+.new-trip__footer-actions--end {
+  justify-content: flex-end;
+}
+
+/* Bottom row inside a sheet: a text link on the left, the main button on the right */
+.new-trip__sheet-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2px;
+  padding-top: var(--space-3-5);
+  border-top: 1px solid var(--color-border);
+}
+
+/* Step 2: the list of people */
+.new-trip__person {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3-5);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.new-trip__person-text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.new-trip__person-name {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.new-trip__person-note {
+  font-size: 13px;
+  color: var(--color-muted-foreground);
+}
+
+/* Round add / remove button: a plus when off, a white check on black when on */
+.new-trip__toggle {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--color-muted-foreground);
+  border-radius: var(--radius-full);
+  background: var(--color-background);
+  color: var(--color-foreground);
+}
+
+.new-trip__toggle--on {
+  border-color: var(--color-inverse);
+  background: var(--color-inverse);
+  color: var(--color-inverse-foreground);
+}
+
+/* Drawn at 32px, but the tap area reaches out to 44px. */
+.new-trip__toggle::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+}
+
+.new-trip__invite {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3-5);
+}
