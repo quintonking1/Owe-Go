@@ -92,6 +92,25 @@ export function addTrip(details) {
   return trip
 }
 
+/**
+ * Set or replace a trip's photo. `photo` is an image data URL, or null to
+ * remove it. Photos are big, so unlike other saves this one checks that
+ * localStorage really took it, and throws (changing nothing) if it didn't.
+ */
+export function setTripPhoto(tripId, photo) {
+  const next = {
+    ...data,
+    trips: data.trips.map((trip) => (trip.id === tripId ? { ...trip, photo } : trip)),
+  }
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(next))
+  } catch {
+    throw new Error('The photo could not be saved on this device.')
+  }
+  data = next
+  listeners.forEach((listener) => listener())
+}
+
 /** Choose which trip Home and the other tabs show. */
 export function setCurrentTrip(tripId) {
   save({ ...data, currentTripId: tripId })

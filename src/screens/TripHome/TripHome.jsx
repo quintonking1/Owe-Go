@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AvatarStack } from '../../components/Avatar/Avatar.jsx'
 import { Button } from '../../components/Button/Button.jsx'
@@ -13,6 +14,7 @@ import { formatDateRange, formatShortDate } from '../../lib/dates.js'
 import { formatMoney } from '../../lib/money.js'
 import { computeBalances, homeAmount } from '../../logic/balances.js'
 import { EmptyTrip } from '../shared/EmptyTrip.jsx'
+import { TripPhotoButton, TripPhotoError } from './TripPhotoButton.jsx'
 import './TripHome.css'
 
 /** How many expenses "Recent charges" shows. "See all" opens the full list. */
@@ -41,7 +43,7 @@ export function TripHome() {
 
   return (
     <Screen>
-      <TripHeader trip={trip} travelers={travelers} />
+      <TripHeader key={trip.id} trip={trip} travelers={travelers} />
 
       {hasExpenses ? (
         <main className="trip-home__main">
@@ -91,6 +93,7 @@ export function TripHome() {
 
 /** Trip photo with the trip switcher and travelers over it, then the trip name and dates. */
 function TripHeader({ trip, travelers }) {
+  const [photoStatus, setPhotoStatus] = useState({ state: 'idle' })
   const city = trip.destination.split(',')[0]
   const names = travelers.map((traveler) => traveler.name).join(', ')
   const count = `${travelers.length} ${travelers.length === 1 ? 'traveler' : 'travelers'}`
@@ -113,6 +116,8 @@ function TripHeader({ trip, travelers }) {
           <AvatarStack people={travelers} size="sm" />
           <span className="trip-home__travelers-count">{count}</span>
         </Link>
+
+        <TripPhotoButton trip={trip} status={photoStatus} onStatus={setPhotoStatus} />
       </div>
 
       <div className="trip-home__heading">
@@ -120,6 +125,7 @@ function TripHeader({ trip, travelers }) {
         <p className="trip-home__dates">
           {formatDateRange(trip.startDate, trip.endDate)} · {trip.homeCurrency}
         </p>
+        <TripPhotoError status={photoStatus} />
       </div>
     </header>
   )
