@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Field card</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&amp;family=DM+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0}
+input::placeholder{color:#8A837B}
+</style>
+</helmet>
+<div style="width: 100%; box-sizing: border-box; border: 1px solid #E4E1DB; border-radius: 16px; background: #FFFFFF; color: #141414; font-family: 'DM Sans', system-ui, sans-serif; position: relative; display: flex; flex-direction: column">
+<div style="display: flex"><div style="padding: 10px 16px; display: flex; flex-direction: column; gap: 2px; flex: {{ titleFlex }}; min-width: 0"><label for="{{ titleId }}" style="font-size: 12px; line-height: 16px; font-weight: 600; color: {{ titleLabelColor }}">{{ titleLabel }}</label><input id="{{ titleId }}" value="{{ titleValue }}" onChange="{{ onTitle }}" placeholder="{{ titlePlaceholder }}" style="border: none; outline: none; font-family: 'DM Sans', system-ui, sans-serif; font-size: 16px; line-height: 22px; color: #141414; padding: 0; background: transparent; width: 100%"><sc-if value="{{ titleError }}" hint-placeholder-val="{{ false }}"><p role="alert" style="margin: 0; display: flex; align-items: center; gap: 6px; font-size: 13px; line-height: 18px; color: #D7263D"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D7263D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v5"></path><path d="M12 16h.01"></path></svg><span>{{ titleErrorText }}</span></p></sc-if></div><div style="width: 1px; background: #E4E1DB"></div><div style="padding: 10px 16px; display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0"><button type="button" aria-haspopup="dialog" aria-label="{{ dateAria }}" onClick="{{ onDate }}" style="width: 100%; padding: 0; border: none; background: transparent; display: flex; align-items: center; gap: 10px; text-align: left; cursor: pointer; font-family: 'DM Sans', system-ui, sans-serif; color: #141414"><span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; line-height: 16px; font-weight: 600; color: {{ dateLabelColor }}">{{ dateLabel }}</span><span style="font-size: 16px; line-height: 22px; color: {{ dateTextColor }}">{{ dateText }}</span></span><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#565049" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M16 3v4"></path><path d="M8 3v4"></path><path d="M3 10h18"></path></svg></button></div></div>
+<sc-if value="{{ dateError }}" hint-placeholder-val="{{ false }}"><div style="border-top: 1px solid #E4E1DB; padding: 8px 16px"><p role="alert" style="margin: 0; display: flex; align-items: center; gap: 6px; font-size: 13px; line-height: 18px; color: #D7263D"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D7263D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v5"></path><path d="M12 16h.01"></path></svg>{{ dateErrorText }}</p></div></sc-if>
+<sc-if value="{{ showCurrency }}" hint-placeholder-val="{{ false }}"><div style="border-top: 1px solid #E4E1DB; position: relative"><button type="button" aria-haspopup="listbox" aria-expanded="{{ curExpanded }}" onClick="{{ onCurrency }}" style="width: 100%; padding: 10px 16px; border: none; background: transparent; display: flex; align-items: center; gap: 12px; text-align: left; cursor: pointer; font-family: 'DM Sans', system-ui, sans-serif; color: #141414; border-radius: 0 0 16px 16px"><span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; line-height: 16px; font-weight: 600; color: #565049">Home currency</span><span style="font-size: 16px; line-height: 22px"><span style="font-family: 'DM Mono', ui-monospace, monospace; font-size: 14px; font-weight: 500">{{ curCode }}</span> · {{ curName }}</span></span><span style="display: flex; transform: {{ chevTurn }}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#565049" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg></span></button><sc-if value="{{ curMenu }}" hint-placeholder-val="{{ false }}"><div role="listbox" aria-label="Currency" style="position: absolute; z-index: 20; background: #FFFFFF; border: 1px solid #E4E1DB; border-radius: 14px; box-shadow: 0 12px 32px rgba(20,20,20,0.18); padding: 6px; display: flex; flex-direction: column; top: 64px; left: 8px; width: 300px"><sc-for list="{{ curs }}" as="c" hint-placeholder-count="6"><button type="button" role="option" aria-selected="{{ c.sel }}" onClick="{{ c.pick }}" style="height: 44px; padding: 0 10px; border: none; border-radius: 10px; background: {{ c.bg }}; display: flex; align-items: center; gap: 10px; font-family: 'DM Sans', system-ui, sans-serif; font-size: 14px; color: #141414; cursor: pointer; text-align: left; width: 100%"><span style="width: 40px; font-family: 'DM Mono', ui-monospace, monospace; font-size: 12px; font-weight: 500">{{ c.code }}</span><span style="flex: 1">{{ c.name }}</span><sc-if value="{{ c.on }}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2948FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"></path></svg></sc-if></button></sc-for></div></sc-if></div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"titleLabel":{"editor":null},"titlePlaceholder":{"editor":null},"titleId":{"editor":null},"titleValue":{"editor":null},"titleError":{"editor":null},"titleErrorText":{"editor":null},"titleLabelColor":{"editor":null},"titleFlex":{"editor":null},"onTitle":{"editor":null},"dateLabel":{"editor":null},"dateText":{"editor":null},"dateTextColor":{"editor":null},"dateLabelColor":{"editor":null},"dateAria":{"editor":null},"onDate":{"editor":null},"dateError":{"editor":null},"dateErrorText":{"editor":null},"showCurrency":{"editor":null},"curCode":{"editor":null},"curName":{"editor":null},"curMenu":{"editor":null},"curs":{"editor":null},"onCurrency":{"editor":null},"$preview":{"width":350,"height":76}}'>
+class Component extends DCLogic {
+renderVals() {
+const p = this.props;
+return {
+titleLabel: p.titleLabel ?? 'What for',
+titlePlaceholder: p.titlePlaceholder ?? '',
+titleId: p.titleId ?? 'field-title',
+titleValue: p.titleValue ?? '',
+titleError: !!p.titleError,
+titleErrorText: p.titleErrorText ?? 'Required',
+titleLabelColor: p.titleLabelColor ?? '#565049',
+titleFlex: p.titleFlex ?? '1.6',
+onTitle: p.onTitle,
+dateLabel: p.dateLabel ?? 'Date',
+dateText: p.dateText ?? '',
+dateTextColor: p.dateTextColor ?? '#141414',
+dateLabelColor: p.dateLabelColor ?? '#565049',
+dateAria: p.dateAria ?? 'Change date',
+onDate: p.onDate,
+dateError: !!p.dateError,
+dateErrorText: p.dateErrorText ?? '',
+showCurrency: !!p.showCurrency,
+curCode: p.curCode ?? 'USD',
+curName: p.curName ?? 'US dollar',
+curMenu: !!p.curMenu,
+curExpanded: p.curMenu ? 'true' : 'false',
+chevTurn: p.curMenu ? 'rotate(180deg)' : 'none',
+curs: p.curs ?? [],
+onCurrency: p.onCurrency
+};
+}
+}
+</script>
+</body>
+</html>

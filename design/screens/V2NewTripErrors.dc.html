@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>New trip: where</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&amp;family=DM+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#141414}a:hover{color:#2948FF}
+input::placeholder{color:#8A837B}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #FFFFFF; color: #141414; font-family: 'DM Sans', system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden; position: relative">
+<div style="height: 64px; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; box-sizing: content-box; padding-top: 44px"><a href="V2Trips.dc.html" aria-label="Close" style="width: 36px; height: 36px; border-radius: 999px; background: #FFFFFF; border: 1px solid #E4E1DB; display: flex; align-items: center; justify-content: center; color: #141414; text-decoration: none; flex-shrink: 0"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"></path><path d="M6 6l12 12"></path></svg></a><span style="width: 36px"></span></div><main style="padding: 8px 20px; display: flex; flex-direction: column; gap: 18px"><h1 style="margin: 0; font-family: 'DM Sans', system-ui, sans-serif; font-size: 28px; line-height: 34px; font-weight: 800; letter-spacing: -0.01em">Where are you headed?</h1><div style="display: flex; flex-direction: column; gap: 6px"><label for="dest" style="height: 56px; border-radius: 999px; box-shadow: 0 6px 20px rgba(20,20,20,0.10); border: 1px solid {{ destBorder }}; display: flex; align-items: center; gap: 12px; padding: 0 20px"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg><input id="dest" value="{{ dest }}" onChange="{{ onDest }}" placeholder="Search a city or country" aria-label="Destination" style="border: none; outline: none; font-family: 'DM Sans', system-ui, sans-serif; font-size: 16px; line-height: 22px; color: #141414; padding: 0; background: transparent; width: 100%; font-weight: 600"></label><sc-if value="{{ destError }}" hint-placeholder-val="{{ false }}"><p role="alert" style="margin: 0; display: flex; align-items: center; gap: 6px; font-size: 13px; line-height: 18px; color: #D7263D"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D7263D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v5"></path><path d="M12 16h.01"></path></svg>Add where you're going</p></sc-if></div><div style="border: 1px solid #E4E1DB; border-radius: 16px"><div style="padding: 10px 16px; display: flex; flex-direction: column; gap: 2px"><label for="trip-name" style="font-size: 12px; line-height: 16px; font-weight: 600; color: {{ nameLabel }}">Trip name</label><input id="trip-name" value="{{ name }}" onChange="{{ onName }}" placeholder="e.g. Tokyo with friends" style="border: none; outline: none; font-family: 'DM Sans', system-ui, sans-serif; font-size: 16px; line-height: 22px; color: #141414; padding: 0; background: transparent; width: 100%"><sc-if value="{{ nameError }}" hint-placeholder-val="{{ false }}"><p role="alert" style="margin: 0; display: flex; align-items: center; gap: 6px; font-size: 13px; line-height: 18px; color: #D7263D"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D7263D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v5"></path><path d="M12 16h.01"></path></svg>Give the trip a name</p></sc-if></div><div style="border-top: 1px solid #E4E1DB; padding: 10px 16px"><button type="button" aria-haspopup="dialog" aria-label="Trip dates: {{ datesText }}. Change dates" onClick="{{ openCal }}" style="width: 100%; padding: 0; border: none; background: transparent; display: flex; align-items: center; gap: 10px; text-align: left; cursor: pointer; font-family: 'DM Sans', system-ui, sans-serif; color: #141414"><span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; line-height: 16px; font-weight: 600; color: {{ dateLabel }}">Dates</span><span style="font-size: 16px; line-height: 22px; color: {{ dateTextColor }}">{{ datesText }}</span></span><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#565049" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M16 3v4"></path><path d="M8 3v4"></path><path d="M3 10h18"></path></svg></button></div><sc-if value="{{ dateError }}" hint-placeholder-val="{{ false }}"><div style="padding: 0 16px 10px"><p role="alert" style="margin: 0; display: flex; align-items: center; gap: 6px; font-size: 13px; line-height: 18px; color: #D7263D"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D7263D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v5"></path><path d="M12 16h.01"></path></svg>{{ dateErrorText }}</p></div></sc-if><div style="border-top: 1px solid #E4E1DB; position: relative"><button type="button" id="home-cur" aria-haspopup="listbox" aria-expanded="{{ menuExpanded }}" onClick="{{ toggleMenu }}" style="width: 100%; padding: 10px 16px; border: none; background: transparent; display: flex; align-items: center; gap: 12px; text-align: left; cursor: pointer; font-family: 'DM Sans', system-ui, sans-serif; color: #141414; border-radius: 0 0 16px 16px"><span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; line-height: 16px; font-weight: 600; color: #565049">Home currency</span><span style="font-size: 16px; line-height: 22px"><span style="font-family: 'DM Mono', ui-monospace, monospace; font-size: 14px; font-weight: 500">{{ cur.code }}</span> · {{ cur.name }}</span></span><span style="display: flex; transform: {{ chevTurn }}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#565049" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg></span></button><sc-if value="{{ menu }}" hint-placeholder-val="{{ false }}"><div role="listbox" aria-label="Currency" style="position: absolute; z-index: 20; background: #FFFFFF; border: 1px solid #E4E1DB; border-radius: 14px; box-shadow: 0 12px 32px rgba(20,20,20,0.18); padding: 6px; display: flex; flex-direction: column; top: 64px; left: 8px; width: 300px"><sc-for list="{{ curs }}" as="c" hint-placeholder-count="6"><button type="button" role="option" aria-selected="{{ c.sel }}" onClick="{{ c.pick }}" style="height: 44px; padding: 0 10px; border: none; border-radius: 10px; background: {{ c.bg }}; display: flex; align-items: center; gap: 10px; font-family: 'DM Sans', system-ui, sans-serif; font-size: 14px; color: #141414; cursor: pointer; text-align: left; width: 100%"><span style="width: 40px; font-family: 'DM Mono', ui-monospace, monospace; font-size: 12px; font-weight: 500">{{ c.code }}</span><span style="flex: 1">{{ c.name }}</span><sc-if value="{{ c.on }}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2948FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"></path></svg></sc-if></button></sc-for></div></sc-if></div></div><p style="margin: 0; font-size: 13px; line-height: 19px; color: #565049">Every expense converts to the home currency using the rate from the day it was paid.</p></main><footer style="margin-top: auto; background: #FFFFFF"><div style="display: flex; gap: 2px"><span style="flex: 1; height: 3px; background: #141414"></span><span style="flex: 1; height: 3px; background: #E4E1DB"></span><span style="flex: 1; height: 3px; background: #E4E1DB"></span></div><div style="padding: 14px 20px 30px; display: flex; align-items: center; justify-content: flex-end"><sc-if value="{{ valid }}" hint-placeholder-val="{{ true }}"><a href="V2Travelers.dc.html" style="height: 48px; padding: 0 22px; box-sizing: border-box; border-radius: 12px; border: none; font-family: 'DM Sans', system-ui, sans-serif; font-size: 16px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; cursor: pointer; white-space: nowrap; background: #141414; color: #FFFFFF">Next</a></sc-if><sc-if value="{{ invalid }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ tryNext }}" style="height: 48px; padding: 0 22px; box-sizing: border-box; border-radius: 12px; border: none; font-family: 'DM Sans', system-ui, sans-serif; font-size: 16px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; cursor: pointer; white-space: nowrap; background: #141414; color: #FFFFFF">Next</button></sc-if></div></footer><sc-if value="{{ cal }}" hint-placeholder-val="{{ false }}"><div style="position: absolute; inset: 0; z-index: 50; display: flex; flex-direction: column; justify-content: flex-end"><button type="button" aria-label="Close calendar" onClick="{{ closeCal }}" style="position: absolute; inset: 0; border: none; padding: 0; background: rgba(20,20,20,0.45); cursor: pointer"></button><section role="dialog" aria-modal="true" aria-labelledby="cal-title" style="position: relative; background: #FFFFFF; border-radius: 24px 24px 0 0; padding: 10px 20px 30px; box-shadow: 0 -8px 32px rgba(20,20,20,0.18); display: flex; flex-direction: column; gap: 14px"><span style="align-self: center; width: 40px; height: 4px; border-radius: 999px; background: #E4E1DB"></span><div style="display: flex; flex-direction: column; gap: 2px"><h2 id="cal-title" style="margin: 0; font-family: 'DM Sans', system-ui, sans-serif; font-size: 22px; line-height: 28px; font-weight: 800">Select dates</h2><span style="font-size: 14px; line-height: 20px; color: #565049">{{ calSub }}</span></div><div style="display: flex; align-items: center; justify-content: space-between"><button type="button" aria-label="Previous month" onClick="{{ prevMonth }}" style="width: 36px; height: 36px; border-radius: 999px; border: 1px solid #E4E1DB; background: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #141414"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg></button><span style="font-size: 16px; font-weight: 600">{{ monthLabel }}</span><button type="button" aria-label="Next month" onClick="{{ nextMonth }}" style="width: 36px; height: 36px; border-radius: 999px; border: 1px solid #E4E1DB; background: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #141414"><span style="display: flex; transform: rotate(180deg)"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg></span></button></div><div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); row-gap: 4px"><span style="text-align: center; font-size: 12px; font-weight: 600; color: #565049">S</span><span style="text-align: center; font-size: 12px; font-weight: 600; color: #565049">M</span><span style="text-align: center; font-size: 12px; font-weight: 600; color: #565049">T</span><span style="text-align: center; font-size: 12px; font-weight: 600; color: #565049">W</span><span style="text-align: center; font-size: 12px; font-weight: 600; color: #565049">T</span><span style="text-align: center; font-size: 12px; font-weight: 600; color: #565049">F</span><span style="text-align: center; font-size: 12px; font-weight: 600; color: #565049">S</span><sc-for list="{{ days }}" as="d" hint-placeholder-count="35"><div style="height: 44px; display: flex; align-items: center; justify-content: center; background: {{ d.band }}"><sc-if value="{{ d.real }}" hint-placeholder-val="{{ true }}"><button type="button" aria-label="{{ d.aria }}" aria-pressed="{{ d.pressed }}" onClick="{{ d.pick }}" style="width: 40px; height: 40px; border-radius: 999px; border: {{ d.border }}; background: {{ d.bg }}; color: {{ d.fg }}; font-family: 'DM Sans', system-ui, sans-serif; font-size: 14px; font-weight: {{ d.weight }}; cursor: pointer; padding: 0">{{ d.label }}</button></sc-if></div></sc-for></div><div style="display: flex; align-items: center; justify-content: space-between; padding-top: 4px; border-top: 1px solid #E4E1DB; margin-top: 2px; padding-top: 14px"><button type="button" onClick="{{ clearCal }}" style="border: none; background: transparent; padding: 0; font-family: 'DM Sans', system-ui, sans-serif; font-size: 15px; font-weight: 600; color: #141414; text-decoration: underline; text-underline-offset: 3px; cursor: pointer">Clear dates</button><button type="button" onClick="{{ closeCal }}" style="height: 48px; padding: 0 22px; box-sizing: border-box; border-radius: 12px; border: none; font-family: 'DM Sans', system-ui, sans-serif; font-size: 16px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; cursor: pointer; white-space: nowrap; background: #141414; color: #FFFFFF">Done</button></div></section></div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+const CURS = [{code:'USD',name:'US dollar',symbol:'$',rate:1},{code:'JPY',name:'Japanese yen',symbol:'¥',rate:0.0067},{code:'EUR',name:'Euro',symbol:'€',rate:1.082},{code:'GBP',name:'British pound',symbol:'£',rate:1.27},{code:'THB',name:'Thai baht',symbol:'฿',rate:0.0283},{code:'MXN',name:'Mexican peso',symbol:'MX$',rate:0.0581}];
+const INIT = {"name": "", "start": "2026-11-03", "end": "", "tried": true};
+
+const MON = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+function iso(y, m, d) { return y + '-' + String(m + 1).padStart(2, '0') + '-' + String(d).padStart(2, '0'); }
+function parts(s) { const a = s.split('-').map(Number); return { y: a[0], m: a[1] - 1, d: a[2] }; }
+function nice(s) { if (!s) return ''; const p = parts(s); return MON[p.m].slice(0, 3) + ' ' + p.d + ', ' + p.y; }
+function shortd(s) { if (!s) return ''; const p = parts(s); return MON[p.m].slice(0, 3) + ' ' + p.d; }
+function nights(a, b) { return Math.round((Date.parse(b) - Date.parse(a)) / 864e5); }
+function monthCells(y, m, cell) {
+  const first = new Date(Date.UTC(y, m, 1)).getUTCDay();
+  const count = new Date(Date.UTC(y, m + 1, 0)).getUTCDate();
+  const out = [];
+  for (let i = 0; i < first; i++) out.push({ key: 'e' + i, real: false, label: '', band: 'transparent', aria: '', pressed: 'false', bg: 'transparent', fg: '#141414', border: 'none', weight: 400, pick: null });
+  for (let d = 1; d <= count; d++) out.push(Object.assign({ key: iso(y, m, d), real: true, label: String(d) }, cell(iso(y, m, d), d)));
+  return out;
+}
+
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = Object.assign({ dest: 'Tokyo, Japan', name: 'Tokyo', start: '2026-11-03', end: '2026-11-10', cur: 'USD', menu: false, tried: false, cal: false, vy: 2026, vm: 10 }, INIT);
+}
+pickDay(d) {
+const s = this.state;
+if (!s.start || s.end || d < s.start) this.setState({ start: d, end: '' });
+else if (d > s.start) this.setState({ end: d });
+}
+renderVals() {
+const s = this.state;
+const cur = CURS.find(c => c.code === s.cur);
+const destBad = !s.dest.trim();
+const nameBad = !s.name.trim();
+const datesMissing = !s.start || !s.end;
+const datesBackward = !datesMissing && s.end < s.start;
+const dateBad = datesMissing || datesBackward;
+const ok = !destBad && !nameBad && !dateBad;
+const red = '#D7263D', grey = '#565049';
+return {
+dest: s.dest, name: s.name, start: s.start, end: s.end, cur: cur, menu: s.menu,
+menuExpanded: s.menu ? 'true' : 'false', chevTurn: s.menu ? 'rotate(180deg)' : 'none',
+destError: s.tried && destBad, nameError: s.tried && nameBad, dateError: s.tried && dateBad,
+dateErrorText: datesMissing ? 'Pick a start and end date' : 'End date can\u0027t be before the start date',
+destBorder: s.tried && destBad ? red : '#E4E1DB',
+nameLabel: s.tried && nameBad ? red : grey, dateLabel: s.tried && dateBad ? red : grey,
+valid: ok, invalid: !ok,
+onDest: e => this.setState({ dest: e.target.value }),
+onName: e => this.setState({ name: e.target.value }),
+cal: s.cal, monthLabel: MON[s.vm] + ' ' + s.vy,
+datesText: s.start && s.end ? shortd(s.start) + ' to ' + nice(s.end) : (s.start ? shortd(s.start) + ' to ...' : 'Add dates'),
+dateTextColor: s.start ? '#141414' : '#8A837B',
+calSub: s.start && s.end ? shortd(s.start) + ' to ' + nice(s.end) + ' · ' + nights(s.start, s.end) + ' nights' : (s.start ? 'Now pick the last day' : 'Pick the first day of the trip'),
+days: monthCells(s.vy, s.vm, (d) => {
+  const isS = d === s.start, isE = d === s.end, inR = s.start && s.end && d > s.start && d < s.end, edge = isS || isE;
+  const both = s.start && s.end && s.start !== s.end;
+  const band = inR ? '#F6F4EF' : (both && isS ? 'linear-gradient(to right, transparent 50%, #F6F4EF 50%)' : (both && isE ? 'linear-gradient(to right, #F6F4EF 50%, transparent 50%)' : 'transparent'));
+  return { band: band, aria: nice(d) + (isS ? ', start' : '') + (isE ? ', end' : ''), pressed: edge ? 'true' : 'false',
+    bg: edge ? '#141414' : 'transparent', fg: edge ? '#FFFFFF' : '#141414', border: 'none', weight: edge ? 700 : 500, pick: () => this.pickDay(d) };
+}),
+openCal: () => { const p = s.start ? parts(s.start) : { y: s.vy, m: s.vm }; this.setState({ cal: true, vy: p.y, vm: p.m, menu: false }); },
+closeCal: () => this.setState({ cal: false }),
+clearCal: () => this.setState({ start: '', end: '' }),
+prevMonth: () => this.setState(s.vm === 0 ? { vm: 11, vy: s.vy - 1 } : { vm: s.vm - 1 }),
+nextMonth: () => this.setState(s.vm === 11 ? { vm: 0, vy: s.vy + 1 } : { vm: s.vm + 1 }),
+toggleMenu: () => this.setState({ menu: !s.menu }),
+tryNext: () => this.setState({ tried: true }),
+curs: CURS.map(c => ({ code: c.code, name: c.name, on: c.code === s.cur, sel: c.code === s.cur ? 'true' : 'false',
+  bg: c.code === s.cur ? '#F6F4EF' : 'transparent', pick: () => this.setState({ cur: c.code, menu: false }) }))
+};
+}
+}
+</script>
+</body>
+</html>

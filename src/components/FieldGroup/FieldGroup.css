@@ -1,0 +1,133 @@
+.field-group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: 1px solid var(--color-input);
+  border-radius: var(--radius-xl);
+  background: var(--color-card);
+  color: var(--color-card-foreground);
+}
+
+/* Rows stack, with a line between them. */
+.field-row {
+  position: relative;
+  display: flex;
+}
+
+.field-row + .field-row {
+  border-top: 1px solid var(--color-input);
+}
+
+/* Fields in one row sit side by side, with a line between them. */
+.field-row > * + * {
+  border-left: 1px solid var(--color-input);
+}
+
+.field-row--message {
+  padding: var(--space-2) var(--space-4);
+}
+
+/* Round the last row's corners so a focus ring follows the box. */
+.field-row:last-child {
+  border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+}
+
+.field {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  padding: var(--space-2-5) var(--space-4);
+}
+
+.field--wide {
+  flex: 1.6;
+}
+
+.field__label {
+  font-size: var(--type-label-size);
+  line-height: var(--type-label-line);
+  font-weight: var(--type-label-weight);
+  color: var(--color-muted-foreground);
+}
+
+.field--error .field__label {
+  color: var(--color-destructive);
+}
+
+.field__input {
+  width: 100%;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  font-size: var(--type-input-size);
+  line-height: var(--type-input-line);
+}
+
+/* The input has no outline of its own, so ring the whole field instead. */
+.field:has(.field__input:focus-visible) {
+  outline: 2px solid var(--color-ring);
+  outline-offset: -2px;
+  border-radius: var(--radius-md);
+}
+
+.field__button {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2-5);
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  text-align: left;
+}
+
+/* Stretch the button's tap and focus area to the whole field. */
+.field--button {
+  position: relative;
+}
+
+.field__button::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.field__button:focus-visible {
+  outline: none;
+}
+
+.field--button:has(.field__button:focus-visible) {
+  outline: 2px solid var(--color-ring);
+  outline-offset: -2px;
+  border-radius: var(--radius-md);
+}
+
+.field__button-text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.field__value {
+  font-size: var(--type-input-size);
+  line-height: var(--type-input-line);
+}
+
+.field__value--empty {
+  color: var(--color-placeholder);
+}
+
+.field__icon {
+  display: flex;
+  color: var(--color-muted-foreground);
+}

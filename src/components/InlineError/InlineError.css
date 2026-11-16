@@ -1,0 +1,8 @@
+.inline-error {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1-5);
+  font-size: var(--type-meta-size);
+  line-height: 18px;
+  color: var(--color-destructive);
+}

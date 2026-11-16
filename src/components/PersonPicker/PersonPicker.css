@@ -1,0 +1,118 @@
+.person-picker {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2-5);
+}
+
+.person-picker__legend {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: var(--space-2-5);
+}
+
+.person-picker__legend-text {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.person-picker--error .person-picker__legend-text {
+  color: var(--color-destructive);
+}
+
+/* Select all / Clear */
+.person-picker__all {
+  position: relative;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.person-picker__all::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: var(--size-touch-target);
+  transform: translateY(-50%);
+}
+
+.person-picker__people {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4-5);
+}
+
+.person-picker__person {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1-5);
+  min-width: 52px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+}
+
+/* The avatar and its name are one button, so the ring goes on the avatar. */
+.person-picker__person:focus-visible {
+  outline: none;
+}
+
+.person-picker__avatar {
+  position: relative;
+  display: flex;
+  border-radius: var(--radius-full);
+  opacity: 0.45;
+}
+
+.person-picker__avatar .avatar {
+  font-size: 17px;
+}
+
+.person-picker__person--selected .person-picker__avatar {
+  opacity: 1;
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Keyboard focus: a dark ring further out, so it reads differently from "selected". */
+.person-picker__person:focus-visible .person-picker__avatar {
+  outline: 2px solid var(--color-foreground);
+  outline-offset: 4px;
+}
+
+.person-picker__badge {
+  position: absolute;
+  right: -4px;
+  bottom: -4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--size-check-badge);
+  height: var(--size-check-badge);
+  border: 2px solid var(--color-background);
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
+}
+
+.person-picker__name {
+  font-size: var(--type-caption-size);
+  line-height: var(--type-caption-line);
+  font-weight: 400;
+}
+
+.person-picker__person--selected .person-picker__name {
+  font-weight: 600;
+}

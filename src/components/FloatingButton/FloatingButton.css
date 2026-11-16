@@ -1,0 +1,22 @@
+.floating-button {
+  position: absolute;
+  left: 50%;
+  /* Sits 18px above the tab bar: its 4px top padding, 50px tabs and 24px bottom padding. */
+  bottom: calc(var(--space-1) + var(--size-tab-item) + var(--space-tab-bar-bottom) + var(--space-4-5));
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: var(--size-button-lg);
+  padding: 0 var(--size-button-padding-x);
+  border: none;
+  border-radius: var(--radius-full);
+  background: var(--color-inverse);
+  color: var(--color-inverse-foreground);
+  box-shadow: var(--shadow-card);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+  text-decoration: none;
+}

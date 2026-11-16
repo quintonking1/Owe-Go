@@ -1,0 +1,91 @@
+.calendar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3-5);
+}
+
+.calendar__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.calendar__month {
+  font-size: var(--type-header-size);
+  font-weight: var(--type-header-weight);
+}
+
+/* "Next" is the back arrow turned around, as in the designs. */
+.calendar__next .icon {
+  transform: rotate(180deg);
+}
+
+.calendar__grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.calendar__week {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.calendar__weekday {
+  text-align: center;
+  font-size: var(--type-label-size);
+  font-weight: var(--type-label-weight);
+  color: var(--color-muted-foreground);
+}
+
+/* Each cell is 44px tall, so the 40px day inside has a full-size tap area. */
+.calendar__cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--size-touch-target);
+}
+
+/* Range mode: a shaded band runs from the start day to the end day. */
+.calendar__cell--in-range {
+  background: var(--color-muted);
+}
+
+.calendar__cell--range-start {
+  background: linear-gradient(to right, transparent 50%, var(--color-muted) 50%);
+}
+
+.calendar__cell--range-end {
+  background: linear-gradient(to right, var(--color-muted) 50%, transparent 50%);
+}
+
+.calendar__day {
+  position: relative;
+  width: var(--size-calendar-day);
+  height: var(--size-calendar-day);
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.calendar__day::after {
+  content: '';
+  position: absolute;
+  inset: calc((var(--size-calendar-day) - var(--size-touch-target)) / 2);
+}
+
+.calendar__day--selected {
+  background: var(--color-inverse);
+  color: var(--color-inverse-foreground);
+  font-weight: 700;
+}
+
+.calendar__day:disabled {
+  color: var(--color-disabled);
+  font-weight: 400;
+}

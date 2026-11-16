@@ -1,0 +1,20 @@
+.coming-soon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2-5);
+  padding: 36px 32px;
+  text-align: center;
+}
+
+.coming-soon__title {
+  font-size: var(--type-empty-title-size);
+  line-height: var(--type-empty-title-line);
+  font-weight: var(--type-empty-title-weight);
+}
+
+.coming-soon__text {
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-line);
+  color: var(--color-muted-foreground);
+}

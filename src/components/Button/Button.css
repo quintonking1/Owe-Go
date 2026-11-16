@@ -1,0 +1,82 @@
+.button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 0 var(--size-button-padding-x);
+  border: none;
+  border-radius: var(--radius-md);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Sizes */
+.button--md {
+  height: var(--size-button-md);
+  font-size: 15px;
+}
+
+.button--lg {
+  height: var(--size-button-lg);
+  font-size: 16px;
+}
+
+.button--full-width {
+  width: 100%;
+}
+
+/* Variants */
+.button--primary {
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
+}
+
+.button--dark {
+  background: var(--color-inverse);
+  color: var(--color-inverse-foreground);
+}
+
+.button--outline {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  border: 1px solid var(--color-foreground);
+}
+
+/* Text link: no box, just underlined text. */
+.button--link {
+  height: auto;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--color-foreground);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.button--link.button--md {
+  font-size: 14px;
+}
+
+.button--link.button--lg {
+  font-size: 15px;
+}
+
+/* The text is short, so stretch the tap area to 44px tall without moving anything. */
+.button--link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: var(--size-touch-target);
+  transform: translateY(-50%);
+}
+
+.button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

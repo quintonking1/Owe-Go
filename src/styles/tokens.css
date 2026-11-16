@@ -1,0 +1,209 @@
+/*
+ * Owe & Go design tokens as CSS custom properties.
+ * Source: design/tokens.json (version 2). Keep the two in step by hand.
+ * Every component reads from these. Do not hardcode hex values in component CSS.
+ */
+:root {
+  /* Colors */
+  --color-background: #FFFFFF;
+  --color-foreground: #141414;
+  --color-card: #FFFFFF;
+  --color-card-foreground: #141414;
+  --color-popover: #FFFFFF;
+  --color-popover-foreground: #141414;
+  --color-primary: #2948FF;
+  --color-primary-foreground: #FFFFFF;
+  --color-inverse: #141414;
+  --color-inverse-foreground: #FFFFFF;
+  --color-muted: #F6F4EF;
+  --color-muted-foreground: #565049;
+  --color-placeholder: #8A837B;
+  --color-border: #E4E1DB;
+  --color-input: #E4E1DB;
+  --color-ring: #2948FF;
+  --color-destructive: #D7263D;
+  --color-owed: #0F7A43;
+  --color-owes: #D7263D;
+  --color-overlay: rgba(20,20,20,0.45);
+  /* Not in tokens.json yet. Taken from the design files. */
+  --color-disabled: #B8B2AA; /* unavailable calendar days (V2AddExpenseCalendar) */
+  --color-overlay-confirm: rgba(20,20,20,0.4); /* confirm payment sheet backdrop */
+
+  /* Person colors */
+  --color-person-you: #2948FF;
+  --color-person-you-foreground: #FFFFFF;
+  --color-person-arno: #FFD43B;
+  --color-person-arno-foreground: #141414;
+  --color-person-catherine: #FF7A59;
+  --color-person-catherine-foreground: #141414;
+  --color-person-dinah: #F6F4EF;
+  --color-person-dinah-foreground: #141414;
+
+  /* Fonts */
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-mono: "DM Mono", ui-monospace, monospace;
+
+  /* Type scale: size, line height, weight and (where set) letter spacing */
+  --type-display-family: var(--font-sans);
+  --type-display-size: 32px;
+  --type-display-line: 38px;
+  --type-display-weight: 800;
+  --type-display-tracking: -0.01em;
+  --type-title-family: var(--font-sans);
+  --type-title-size: 28px;
+  --type-title-line: 34px;
+  --type-title-weight: 800;
+  --type-title-tracking: -0.01em;
+  --type-title-settled-family: var(--font-sans);
+  --type-title-settled-size: 30px;
+  --type-title-settled-line: 36px;
+  --type-title-settled-weight: 800;
+  --type-title-settled-tracking: -0.01em;
+  --type-dialog-title-family: var(--font-sans);
+  --type-dialog-title-size: 24px;
+  --type-dialog-title-line: 30px;
+  --type-dialog-title-weight: 800;
+  --type-sheet-title-family: var(--font-sans);
+  --type-sheet-title-size: 22px;
+  --type-sheet-title-line: 28px;
+  --type-sheet-title-weight: 800;
+  --type-empty-title-family: var(--font-sans);
+  --type-empty-title-size: 24px;
+  --type-empty-title-line: 30px;
+  --type-empty-title-weight: 700;
+  --type-section-lg-family: var(--font-sans);
+  --type-section-lg-size: 20px;
+  --type-section-lg-line: 26px;
+  --type-section-lg-weight: 700;
+  --type-section-family: var(--font-sans);
+  --type-section-size: 18px;
+  --type-section-line: 24px;
+  --type-section-weight: 700;
+  --type-section-sm-family: var(--font-sans);
+  --type-section-sm-size: 17px;
+  --type-section-sm-line: 23px;
+  --type-section-sm-weight: 700;
+  --type-header-family: var(--font-sans);
+  --type-header-size: 16px;
+  --type-header-line: 22px;
+  --type-header-weight: 600;
+  --type-body-family: var(--font-sans);
+  --type-body-size: 15px;
+  --type-body-line: 21px;
+  --type-body-weight: 400;
+  --type-input-family: var(--font-sans);
+  --type-input-size: 16px;
+  --type-input-line: 22px;
+  --type-input-weight: 400;
+  --type-item-title-family: var(--font-sans);
+  --type-item-title-size: 15px;
+  --type-item-title-line: 21px;
+  --type-item-title-weight: 600;
+  --type-meta-family: var(--font-sans);
+  --type-meta-size: 13px;
+  --type-meta-line: 19px;
+  --type-meta-weight: 400;
+  --type-label-family: var(--font-sans);
+  --type-label-size: 12px;
+  --type-label-line: 16px;
+  --type-label-weight: 600;
+  --type-caption-family: var(--font-sans);
+  --type-caption-size: 12px;
+  --type-caption-line: 16px;
+  --type-caption-weight: 400;
+  --type-tab-family: var(--font-sans);
+  --type-tab-size: 11px;
+  --type-tab-line: 14px;
+  --type-tab-weight: 500;
+  --type-amount-input-family: var(--font-mono);
+  --type-amount-input-size: 34px;
+  --type-amount-input-line: 42px;
+  --type-amount-input-weight: 500;
+  --type-amount-balance-family: var(--font-mono);
+  --type-amount-balance-size: 26px;
+  --type-amount-balance-line: 32px;
+  --type-amount-balance-weight: 500;
+  --type-amount-each-family: var(--font-mono);
+  --type-amount-each-size: 24px;
+  --type-amount-each-line: 30px;
+  --type-amount-each-weight: 600;
+  --type-amount-each-tracking: -0.3px;
+  --type-amount-lg-family: var(--font-mono);
+  --type-amount-lg-size: 20px;
+  --type-amount-lg-line: 26px;
+  --type-amount-lg-weight: 500;
+  --type-amount-md-family: var(--font-mono);
+  --type-amount-md-size: 15px;
+  --type-amount-md-line: 20px;
+  --type-amount-md-weight: 500;
+  --type-amount-sm-family: var(--font-mono);
+  --type-amount-sm-size: 14px;
+  --type-amount-sm-line: 20px;
+  --type-amount-sm-weight: 500;
+  --type-code-family: var(--font-mono);
+  --type-code-size: 13px;
+  --type-code-line: 18px;
+  --type-code-weight: 500;
+  --type-code-sm-family: var(--font-mono);
+  --type-code-sm-size: 12px;
+  --type-code-sm-line: 16px;
+  --type-code-sm-weight: 400;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-1-5: 6px;
+  --space-2-5: 10px;
+  --space-3-5: 14px;
+  --space-4-5: 18px;
+  --space-7-5: 30px;
+  --space-page-x: 20px;
+  --space-top-inset: 44px;
+  --space-top-bar: 64px;
+  --space-footer-bottom: 30px;
+  --space-tab-bar-bottom: 24px;
+
+  /* Radii */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 12px;
+  --radius-lg: 14px;
+  --radius-xl: 16px;
+  --radius-sheet: 24px;
+  --radius-full: 999px;
+
+  /* Shadows */
+  --shadow-card: 0 6px 20px rgba(20,20,20,0.10);
+  --shadow-popover: 0 12px 32px rgba(20,20,20,0.18);
+  --shadow-sheet: 0 -8px 32px rgba(20,20,20,0.18);
+
+  /* Sizes */
+  --size-screen-width: 390px;
+  --size-screen-height: 844px;
+  --size-touch-target: 44px;
+  --size-button-md: 44px;
+  --size-button-lg: 48px;
+  --size-button-padding-x: 22px;
+  --size-icon-button: 36px;
+  --size-avatar-sm: 36px;
+  --size-avatar-md: 40px;
+  --size-avatar-lg: 44px;
+  --size-avatar-xl: 52px;
+  --size-avatar-stack-overlap: -10px;
+  --size-avatar-stack-ring: 2px;
+  --size-check-badge: 20px;
+  --size-currency-chip: 32px;
+  --size-search-field-travelers: 52px;
+  --size-search-field-destination: 56px;
+  --size-calendar-day: 40px;
+  --size-tab-item: 50px;
+  --size-progress-bar: 3px;
+  --size-icon-sm: 14px;
+  --size-icon-md: 16px;
+  --size-icon-lg: 18px;
+  --size-icon-xl: 24px;
+}

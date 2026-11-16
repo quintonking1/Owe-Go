@@ -1,0 +1,28 @@
+.icon-button {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: var(--size-icon-button);
+  height: var(--size-icon-button);
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  background: var(--color-background);
+  color: var(--color-foreground);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Drawn at 36px, but the tap area reaches out to 44px. */
+.icon-button::after {
+  content: '';
+  position: absolute;
+  inset: calc((var(--size-icon-button) - var(--size-touch-target)) / 2);
+}
+
+.icon-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

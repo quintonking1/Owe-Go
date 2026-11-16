@@ -1,0 +1,19 @@
+.screen-backdrop {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  height: 100dvh;
+  background: var(--color-muted);
+}
+
+.screen {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: var(--size-screen-width);
+  height: 100%;
+  overflow: hidden;
+  background: var(--color-background);
+  color: var(--color-foreground);
+}

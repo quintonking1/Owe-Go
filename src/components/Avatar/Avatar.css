@@ -1,0 +1,70 @@
+.avatar {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  font-family: var(--font-sans);
+  font-weight: 700;
+}
+
+/* Sizes */
+.avatar--sm {
+  width: var(--size-avatar-sm);
+  height: var(--size-avatar-sm);
+  font-size: 14px;
+}
+
+.avatar--md {
+  width: var(--size-avatar-md);
+  height: var(--size-avatar-md);
+  font-size: 16px;
+}
+
+.avatar--lg {
+  width: var(--size-avatar-lg);
+  height: var(--size-avatar-lg);
+  font-size: 18px;
+}
+
+.avatar--xl {
+  width: var(--size-avatar-xl);
+  height: var(--size-avatar-xl);
+  font-size: 21px;
+}
+
+/* Person colors */
+.avatar--you {
+  background: var(--color-person-you);
+  color: var(--color-person-you-foreground);
+}
+
+.avatar--arno {
+  background: var(--color-person-arno);
+  color: var(--color-person-arno-foreground);
+}
+
+.avatar--catherine {
+  background: var(--color-person-catherine);
+  color: var(--color-person-catherine-foreground);
+}
+
+.avatar--dinah {
+  background: var(--color-person-dinah);
+  color: var(--color-person-dinah-foreground);
+}
+
+/* Stack */
+.avatar-stack {
+  display: flex;
+}
+
+.avatar-stack__item {
+  display: flex;
+  border: var(--size-avatar-stack-ring) solid var(--color-background);
+  border-radius: var(--radius-full);
+}
+
+.avatar-stack__item + .avatar-stack__item {
+  margin-left: var(--size-avatar-stack-overlap);
+}

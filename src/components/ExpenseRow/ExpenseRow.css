@@ -1,0 +1,124 @@
+.expense-row {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.expense-row__inner {
+  display: flex;
+  align-items: center;
+  color: var(--color-foreground);
+  text-decoration: none;
+}
+
+.expense-row__chip {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-muted);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.expense-row__text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.expense-row__title {
+  font-weight: 600;
+}
+
+.expense-row__title,
+.expense-row__meta {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.expense-row__meta {
+  color: var(--color-muted-foreground);
+}
+
+.expense-row__amounts {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.expense-row__home {
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.expense-row__original {
+  color: var(--color-muted-foreground);
+  white-space: nowrap;
+}
+
+/* Regular: the Expenses tab */
+.expense-row--regular .expense-row__inner {
+  gap: var(--space-3-5);
+  padding: var(--space-3) 0;
+}
+
+.expense-row--regular .expense-row__chip {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+}
+
+.expense-row--regular .expense-row__text,
+.expense-row--regular .expense-row__amounts {
+  gap: 2px;
+}
+
+.expense-row--regular .expense-row__title {
+  font-size: 16px;
+}
+
+.expense-row--regular .expense-row__meta {
+  font-size: 13px;
+}
+
+.expense-row--regular .expense-row__home {
+  font-size: var(--type-amount-md-size);
+}
+
+.expense-row--regular .expense-row__original {
+  font-size: 12px;
+}
+
+/* Compact: Recent charges on Home */
+.expense-row--compact .expense-row__inner {
+  gap: var(--space-3);
+  padding: var(--space-2-5) 0;
+}
+
+.expense-row--compact .expense-row__chip {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+}
+
+.expense-row--compact .expense-row__text,
+.expense-row--compact .expense-row__amounts {
+  gap: 1px;
+}
+
+.expense-row--compact .expense-row__title {
+  font-size: var(--type-item-title-size);
+}
+
+.expense-row--compact .expense-row__meta {
+  font-size: var(--type-caption-size);
+}
+
+.expense-row--compact .expense-row__home {
+  font-size: var(--type-amount-sm-size);
+}
+
+.expense-row--compact .expense-row__original {
+  font-size: 11px;
+}

@@ -1,0 +1,212 @@
+/* Photo with the trip switcher and travelers on top of it */
+.trip-home__hero {
+  position: relative;
+}
+
+.trip-home__photo {
+  display: block;
+  width: 100%;
+  height: 236px;
+  object-fit: cover;
+}
+
+.trip-home__photo--empty {
+  background: var(--color-muted);
+}
+
+.trip-home__switcher {
+  position: absolute;
+  top: 56px;
+  left: var(--space-page-x);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1-5);
+  height: var(--size-icon-button);
+  padding: 0 var(--space-3) 0 var(--space-3-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* Drawn at 36px, but the tap area reaches out to 44px. */
+.trip-home__switcher::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc((var(--size-icon-button) - var(--size-touch-target)) / 2);
+  bottom: calc((var(--size-icon-button) - var(--size-touch-target)) / 2);
+}
+
+.trip-home__travelers {
+  position: absolute;
+  left: var(--space-page-x);
+  bottom: var(--space-3-5);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2-5);
+  padding: var(--space-1) var(--space-3-5) var(--space-1) var(--space-1);
+  border-radius: var(--radius-full);
+  /* Slightly see-through white, so a hint of the photo shows. */
+  background: color-mix(in srgb, var(--color-background) 90%, transparent);
+  box-shadow: var(--shadow-card);
+  color: var(--color-foreground);
+  text-decoration: none;
+}
+
+.trip-home__travelers-count {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Trip name and dates */
+.trip-home__heading {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-4) var(--space-page-x) var(--space-1);
+}
+
+.trip-home__title {
+  font-size: var(--type-title-size);
+  line-height: var(--type-title-line);
+  font-weight: var(--type-title-weight);
+  letter-spacing: var(--type-title-tracking);
+}
+
+.trip-home__dates {
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--color-muted-foreground);
+}
+
+/* Main area: balance card, then the list fills what's left */
+.trip-home__main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-height: 0;
+  overflow: hidden;
+  padding: var(--space-3-5) var(--space-page-x) 0;
+}
+
+.trip-home__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3-5);
+  padding: var(--space-4-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  background: var(--color-card);
+  box-shadow: var(--shadow-card);
+}
+
+.trip-home__balance {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.trip-home__balance-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.trip-home__balance-label {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.trip-home__balance-summary {
+  font-size: var(--type-meta-size);
+  line-height: var(--type-meta-line);
+  color: var(--color-muted-foreground);
+}
+
+/* Neutral black on purpose. Never red. */
+.trip-home__balance-amount {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  color: var(--color-foreground);
+  font-size: var(--type-amount-balance-size);
+  font-weight: var(--type-amount-balance-weight);
+  white-space: nowrap;
+}
+
+.trip-home__balance-arrow {
+  display: flex;
+  color: var(--color-muted-foreground);
+}
+
+.trip-home__actions {
+  display: flex;
+  gap: var(--space-2-5);
+}
+
+/* Recent charges */
+.trip-home__recent {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.trip-home__recent-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.trip-home__recent-title {
+  font-size: var(--type-section-sm-size);
+  line-height: var(--type-section-sm-line);
+  font-weight: var(--type-section-sm-weight);
+}
+
+/* Scrolls, and fades to nothing over the last 120px, above the Add expense button. */
+.trip-home__list {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding-bottom: 88px;
+  -webkit-mask-image: linear-gradient(to bottom, black 0, black calc(100% - 120px), transparent 100%);
+  mask-image: linear-gradient(to bottom, black 0, black calc(100% - 120px), transparent 100%);
+}
+
+.trip-home__list:focus-visible {
+  outline-offset: -2px;
+}
+
+/* Empty trip */
+.trip-home__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2-5);
+  padding: 36px 32px;
+  text-align: center;
+}
+
+.trip-home__empty-title {
+  font-size: var(--type-empty-title-size);
+  line-height: var(--type-empty-title-line);
+  font-weight: var(--type-empty-title-weight);
+}
+
+.trip-home__empty-text {
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-line);
+  color: var(--color-muted-foreground);
+}
+
+.trip-home__empty-action {
+  margin-top: var(--space-3-5);
+}
