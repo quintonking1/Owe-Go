@@ -8,7 +8,9 @@ import tokyoPhoto from '../assets/tokyo.webp'
  *   person  { id, name, color, phone, friend }
  *           color is an Avatar color name. `friend: false` means they have an
  *           account but only show up once invited by phone number.
- *   trip    { id, name, destination, startDate, endDate, homeCurrency, travelerIds, photo }
+ *   trip    { id, name, destination, startDate, endDate, homeCurrency, localCurrency, travelerIds, photo }
+ *           localCurrency is what's spent at the destination, so new expenses
+ *           start in it. Null when we have no rates for it.
  *   expense { id, tripId, title, date, amount, currency, rate, rateDate,
  *             paidById, splitBetweenIds, createdAt }
  *           amount is in the paid currency's smallest unit (cents, or whole yen).
@@ -19,6 +21,13 @@ export const initialData = {
   currentTripId: 'tokyo-2026',
   // Becomes true once the demo expenses have been added.
   demoSeeded: false,
+  // Set on the Profile screen.
+  preferences: {
+    homeCurrency: 'USD',
+    paymentMethod: 'venmo',
+    newExpenseAlerts: true,
+    paymentReminders: true,
+  },
   people: [
     { id: 'quinton', name: 'Quinton', color: 'you', phone: '5105550100', friend: true },
     { id: 'arno', name: 'Arno', color: 'arno', phone: '5105550111', friend: true },
@@ -36,6 +45,7 @@ export const initialData = {
       startDate: '2026-11-03',
       endDate: '2026-11-10',
       homeCurrency: 'USD',
+      localCurrency: 'JPY',
       travelerIds: ['quinton', 'arno', 'catherine', 'dinah'],
       photo: tokyoPhoto,
     },
@@ -46,6 +56,7 @@ export const initialData = {
       startDate: '2026-06-12',
       endDate: '2026-06-18',
       homeCurrency: 'USD',
+      localCurrency: 'EUR',
       travelerIds: ['quinton', 'arno', 'dinah'],
       photo: null,
     },

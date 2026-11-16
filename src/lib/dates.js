@@ -109,3 +109,15 @@ export function nightsBetween(startIso, endIso) {
   const ms = Date.UTC(end.year, end.month, end.day) - Date.UTC(start.year, start.month, start.day)
   return Math.round(ms / 86400000)
 }
+
+/**
+ * Dates without the year, for headers and fields:
+ * "Nov 3 to 10" in one month, "Nov 28 to Dec 2" across months, and
+ * "Nov 3 to ..." when only the start is picked.
+ */
+export function formatShortRange(startIso, endIso) {
+  if (!startIso) return ''
+  if (!endIso) return `${formatShortDate(startIso)} to ...`
+  const sameMonth = startIso.slice(0, 7) === endIso.slice(0, 7)
+  return `${formatShortDate(startIso)} to ${sameMonth ? parseIso(endIso).day : formatShortDate(endIso)}`
+}

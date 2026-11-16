@@ -1,0 +1,101 @@
+/* Sits on the card's edge-to-edge divider line. */
+.breakdown {
+  margin: 0 calc(var(--space-4) * -1);
+  padding: 0 var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+
+.breakdown .collapsible__toggle {
+  padding-top: var(--space-3);
+}
+
+.breakdown__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.breakdown__heading {
+  padding: var(--space-1-5) 0 2px;
+  font-size: var(--type-label-size);
+  line-height: var(--type-label-line);
+  font-weight: var(--type-label-weight);
+  color: var(--color-muted-foreground);
+}
+
+.breakdown__row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 9px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.breakdown__row-text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.breakdown__row-title {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.breakdown__row-meta {
+  font-size: var(--type-caption-size);
+  line-height: var(--type-caption-line);
+  color: var(--color-muted-foreground);
+}
+
+.breakdown__row-amount {
+  font-size: var(--type-amount-sm-size);
+  font-weight: var(--type-amount-sm-weight);
+  white-space: nowrap;
+}
+
+.breakdown__more {
+  flex: 1;
+  color: var(--color-foreground);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.breakdown__sums {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1-5);
+  margin: 0;
+  padding-top: var(--space-3);
+}
+
+.breakdown__sum {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.breakdown__sum dd {
+  margin: 0;
+}
+
+.breakdown__sum--total {
+  padding-top: var(--space-1-5);
+  border-top: 1px solid var(--color-border);
+  font-size: var(--type-amount-md-size);
+  font-weight: 700;
+}
+
+.breakdown__sum--total dd {
+  font-weight: 600;
+}
+
+.breakdown__note {
+  margin-top: var(--space-1);
+  font-size: var(--type-caption-size);
+  line-height: 17px;
+  color: var(--color-muted-foreground);
+}

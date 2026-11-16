@@ -11,6 +11,7 @@ import './SearchField.css'
  *   screen) or 'plain' (52px, for filtering a list)
  * - error: true turns the border red
  * - describedBy: id of the error message that explains what's wrong
+ * - inputProps: anything else for the <input>, e.g. combobox ARIA and onKeyDown
  */
 export function SearchField({
   label,
@@ -20,6 +21,7 @@ export function SearchField({
   variant = 'plain',
   error = false,
   describedBy,
+  inputProps,
 }) {
   return (
     <label className={`search-field search-field--${variant} ${error ? 'search-field--error' : ''}`.trim()}>
@@ -34,6 +36,7 @@ export function SearchField({
         placeholder={placeholder}
         value={value}
         onChange={(event) => onChange(event.target.value)}
+        {...inputProps}
       />
     </label>
   )

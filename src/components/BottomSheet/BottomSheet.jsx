@@ -14,6 +14,10 @@ import './BottomSheet.css'
  * - title: heading at the top of the sheet. Screen readers announce it.
  * - subtitle: optional line under the title
  * - ariaLabel: name for screen readers when there is no visible title
+ * - labelledBy: id of a heading inside the sheet to use as its name, when
+ *   the sheet draws its own header instead of using `title`
+ * - backdrop: 'default', or 'light' for the slightly lighter dim used
+ *   behind the confirm payment sheet
  * - showHandle: show the small grab handle (default true)
  * - closeLabel: what screen readers say for the dimmed area (default "Close")
  *
@@ -25,7 +29,17 @@ export function BottomSheet({ open, ...props }) {
   return createPortal(<Sheet {...props} />, document.body)
 }
 
-function Sheet({ onClose, title, subtitle, ariaLabel, showHandle = true, closeLabel = 'Close', children }) {
+function Sheet({
+  onClose,
+  title,
+  subtitle,
+  ariaLabel,
+  labelledBy,
+  backdrop = 'default',
+  showHandle = true,
+  closeLabel = 'Close',
+  children,
+}) {
   const panelRef = useRef(null)
   const titleId = useId()
 
@@ -38,7 +52,7 @@ function Sheet({ onClose, title, subtitle, ariaLabel, showHandle = true, closeLa
       {/* A real button, but out of the Tab order: keyboard users close with Escape. */}
       <button
         type="button"
-        className="bottom-sheet__backdrop"
+        className={`bottom-sheet__backdrop bottom-sheet__backdrop--${backdrop}`}
         aria-label={closeLabel}
         tabIndex={-1}
         onClick={onClose}
@@ -48,7 +62,7 @@ function Sheet({ onClose, title, subtitle, ariaLabel, showHandle = true, closeLa
         className="bottom-sheet__panel"
         role="dialog"
         aria-modal="true"
-        aria-labelledby={title ? titleId : undefined}
+        aria-labelledby={title ? titleId : labelledBy}
         aria-label={title ? undefined : ariaLabel}
         tabIndex={-1}
       >

@@ -84,7 +84,7 @@ export function undoLastPayment(tripId) {
 /**
  * Save a new trip and make it the current one. Returns the saved trip.
  * Pass everything except the id: { name, destination, startDate, endDate,
- * homeCurrency, travelerIds }.
+ * homeCurrency, localCurrency, travelerIds }.
  */
 export function addTrip(details) {
   const trip = { photo: null, ...details, id: `trip-${Date.now()}` }
@@ -95,6 +95,11 @@ export function addTrip(details) {
 /** Choose which trip Home and the other tabs show. */
 export function setCurrentTrip(tripId) {
   save({ ...data, currentTripId: tripId })
+}
+
+/** Change some of your Profile preferences, e.g. updatePreferences({ homeCurrency: 'EUR' }). */
+export function updatePreferences(changes) {
+  save({ ...data, preferences: { ...initialData.preferences, ...data.preferences, ...changes } })
 }
 
 export function markDemoSeeded() {

@@ -13,6 +13,10 @@ export function NewTripFlow() {
 
   const [draft, setDraft] = useState({
     destination: '',
+    // The place chosen from the search results, or null while typing.
+    place: null,
+    // True when place search is down, so a typed destination is allowed.
+    placeSearchDown: false,
     name: '',
     startDate: '',
     endDate: '',

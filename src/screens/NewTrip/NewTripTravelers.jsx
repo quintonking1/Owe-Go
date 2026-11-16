@@ -9,6 +9,7 @@ import { ProgressSteps } from '../../components/ProgressSteps/ProgressSteps.jsx'
 import { Screen } from '../../components/Screen/Screen.jsx'
 import { SearchField } from '../../components/SearchField/SearchField.jsx'
 import { TopBar } from '../../components/TopBar/TopBar.jsx'
+import { currencyForCountry } from '../../data/currencies.js'
 import { addTrip, useAppData } from '../../data/store.js'
 import { checkTripDetails, useNewTripDraft } from './newTripDraft.js'
 import './NewTrip.css'
@@ -62,6 +63,8 @@ export function NewTripTravelers() {
       startDate: draft.startDate,
       endDate: draft.endDate,
       homeCurrency: draft.homeCurrency,
+      // From the chosen place. New expenses start in it. Null if unknown.
+      localCurrency: currencyForCountry(draft.place?.countryCode),
       travelerIds: draft.travelerIds,
     })
     // The new trip is now the current trip, so Home shows it, empty.

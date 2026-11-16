@@ -1,0 +1,117 @@
+.balances {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+  overflow-y: auto;
+  padding: var(--space-1) var(--space-page-x);
+}
+
+.balances__row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3-5);
+  padding: var(--space-3-5) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.balances__who {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.balances__name {
+  font-size: var(--type-header-size);
+  font-weight: var(--type-header-weight);
+}
+
+.balances__paid {
+  font-size: var(--type-meta-size);
+  color: var(--color-muted-foreground);
+}
+
+.balances__currencies {
+  font-size: 11px;
+  color: var(--color-muted-foreground);
+}
+
+.balances__net {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.balances__amount {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 16px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Always paired with a sign and an arrow, so color isn't the only cue. */
+.balances__amount--owed {
+  color: var(--color-owed);
+}
+
+.balances__amount--owes {
+  color: var(--color-owes);
+}
+
+.balances__amount--even {
+  color: var(--color-foreground);
+}
+
+.balances__label {
+  font-size: var(--type-caption-size);
+  color: var(--color-muted-foreground);
+}
+
+.balances__sum {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--space-3-5) 0;
+  font-size: var(--type-amount-md-size);
+  font-weight: 600;
+}
+
+.balances__sum .mono {
+  font-weight: var(--type-amount-md-weight);
+}
+
+.balances__note {
+  font-size: var(--type-meta-size);
+  line-height: var(--type-meta-line);
+  color: var(--color-muted-foreground);
+}
+
+.balances__footer {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3-5) var(--space-page-x) var(--space-footer-bottom);
+  border-top: 1px solid var(--color-border);
+  background: var(--color-background);
+}
+
+.balances__footer-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.balances__footer-count {
+  font-size: var(--type-meta-size);
+  color: var(--color-muted-foreground);
+}
+
+.balances__footer-label {
+  font-size: var(--type-amount-md-size);
+  font-weight: 600;
+}

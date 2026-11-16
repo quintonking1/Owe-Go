@@ -44,11 +44,14 @@ export function AddExpense() {
   const amountErrorId = useId()
   const today = todayIso()
 
-  // Start in the currency this trip used last, since that's the likely one again.
+  // Start in the destination's currency. Trips without one start in the
+  // currency used last, since that's the likely one again.
   const lastExpense = tripExpenses[tripExpenses.length - 1]
 
   const [amountText, setAmountText] = useState('')
-  const [currency, setCurrency] = useState(lastExpense?.currency ?? trip?.homeCurrency ?? 'USD')
+  const [currency, setCurrency] = useState(
+    trip?.localCurrency ?? lastExpense?.currency ?? trip?.homeCurrency ?? 'USD',
+  )
   const [title, setTitle] = useState('')
   const [date, setDate] = useState(today)
   const [paidById, setPaidById] = useState(currentUserId)

@@ -26,6 +26,14 @@
   gap: var(--space-1-5);
 }
 
+/* Under the destination: which currency expenses will start in */
+.new-trip__local-currency {
+  padding: 0 var(--space-5);
+  font-size: var(--type-meta-size);
+  line-height: var(--type-meta-line);
+  color: var(--color-muted-foreground);
+}
+
 .new-trip__help {
   font-size: var(--type-meta-size);
   line-height: var(--type-meta-line);

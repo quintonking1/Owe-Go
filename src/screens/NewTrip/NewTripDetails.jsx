@@ -6,22 +6,14 @@ import { Calendar } from '../../components/Calendar/Calendar.jsx'
 import { CurrencyPicker } from '../../components/CurrencyPicker/CurrencyPicker.jsx'
 import { ButtonField, FieldGroup, FieldMessage, FieldRow, TextField } from '../../components/FieldGroup/FieldGroup.jsx'
 import { InlineError } from '../../components/InlineError/InlineError.jsx'
+import { PlaceSearch } from '../../components/PlaceSearch/PlaceSearch.jsx'
 import { ProgressSteps } from '../../components/ProgressSteps/ProgressSteps.jsx'
 import { Screen } from '../../components/Screen/Screen.jsx'
-import { SearchField } from '../../components/SearchField/SearchField.jsx'
 import { TopBar } from '../../components/TopBar/TopBar.jsx'
-import { CURRENCIES } from '../../data/currencies.js'
-import { formatLongDate, formatShortDate, nightsBetween, parseIso } from '../../lib/dates.js'
+import { CURRENCIES, currencyByCode, currencyForCountry } from '../../data/currencies.js'
+import { formatLongDate, formatShortDate, formatShortRange, nightsBetween } from '../../lib/dates.js'
 import { checkTripDetails, useNewTripDraft } from './newTripDraft.js'
 import './NewTrip.css'
-
-/** "Nov 3 to 10" in one month, "Nov 28 to Dec 2" across months, "Nov 3 to ..." half picked. */
-function shortRange(start, end) {
-  if (!start) return ''
-  if (!end) return `${formatShortDate(start)} to ...`
-  const sameMonth = start.slice(0, 7) === end.slice(0, 7)
-  return `${formatShortDate(start)} to ${sameMonth ? parseIso(end).day : formatShortDate(end)}`
-}
 
 /** The line under "Select dates" in the calendar sheet. */
 function sheetSubtitle(start, end) {
@@ -42,6 +34,9 @@ export function NewTripDetails() {
   const [triedNext, setTriedNext] = useState(false)
 
   const problems = triedNext ? checkTripDetails(draft) : {}
+
+  // The currency new expenses on this trip will start in.
+  const localCurrency = currencyByCode(currencyForCountry(draft.place?.countryCode))
 
   function handleNext() {
     if (Object.keys(checkTripDetails(draft)).length > 0) {
@@ -64,16 +59,32 @@ export function NewTripDetails() {
         <h1 className="new-trip__title">Where are you headed?</h1>
 
         <div className="new-trip__destination">
-          <SearchField
-            variant="elevated"
+          <PlaceSearch
             label="Destination"
             placeholder="Search a city or country"
             value={draft.destination}
-            onChange={(destination) => updateDraft({ destination })}
+            place={draft.place}
+            onTextChange={(destination) => updateDraft({ destination, place: null })}
+            onPick={(place) =>
+              updateDraft({
+                destination: place.label,
+                place,
+                // Fill in a name if there isn't one yet. It can still be changed.
+                ...(draft.name.trim() ? {} : { name: place.name }),
+              })
+            }
+            onUnavailable={(placeSearchDown) => updateDraft({ placeSearchDown })}
             error={Boolean(problems.destination)}
             describedBy={problems.destination ? destinationErrorId : undefined}
           />
           {problems.destination && <InlineError id={destinationErrorId}>{problems.destination}</InlineError>}
+          {draft.place && (
+            <p className="new-trip__local-currency">
+              {localCurrency
+                ? `Expenses will start in ${localCurrency.name} (${localCurrency.code}). You can change it on each one.`
+                : `We don't have rates for the currency used in ${draft.place.country}, so expenses will start in the home currency.`}
+            </p>
+          )}
         </div>
 
         <FieldGroup>
@@ -87,7 +98,7 @@ export function NewTripDetails() {
             />
             <ButtonField
               label="Dates"
-              value={shortRange(draft.startDate, draft.endDate)}
+              value={formatShortRange(draft.startDate, draft.endDate)}
               placeholder="Add dates"
               error={Boolean(problems.dates)}
               ariaLabel={`Trip dates: ${datesForScreenReader}. Change dates`}

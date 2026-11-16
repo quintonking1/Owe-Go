@@ -17,6 +17,10 @@
   animation: bottom-sheet-fade 160ms ease-out;
 }
 
+.bottom-sheet__backdrop--light {
+  background: var(--color-overlay-confirm);
+}
+
 .bottom-sheet__panel {
   position: relative;
   display: flex;

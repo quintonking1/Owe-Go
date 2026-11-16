@@ -9,6 +9,7 @@ export function useNewTripDraft() {
 export function checkTripDetails(draft) {
   const problems = {}
   if (!draft.destination.trim()) problems.destination = "Add where you're going"
+  else if (!draft.place && !draft.placeSearchDown) problems.destination = 'Choose a place from the list'
   if (!draft.name.trim()) problems.name = 'Give the trip a name'
   if (!draft.startDate || !draft.endDate) problems.dates = 'Pick a start and end date'
   else if (draft.endDate < draft.startDate) problems.dates = "End date can't be before the start date"
